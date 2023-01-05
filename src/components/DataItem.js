@@ -5,7 +5,7 @@ import {
   Image,
   TouchableWithoutFeedback,
 } from "react-native";
-import React from "react";
+import React, { memo } from "react";
 import { BlurView } from "expo-blur";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { THEME, WIDTH } from "../../constants/constants";
@@ -107,4 +107,4 @@ const styles = (colors) =>
     },
   });
 
-export default DataItem;
+export default memo(DataItem);

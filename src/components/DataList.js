@@ -10,10 +10,10 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import DataItem from "./DataItem";
+import { BASE_URL } from "../../constants/constants";
 
 const DataList = ({ type }) => {
   const [data, setData] = useState([]);
-  const [limit, _] = useState(50);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,7 +26,7 @@ const DataList = ({ type }) => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    fetch(`https://api.jikan.moe/v4/${type}?limit=${limit}&q=${searchQuery}`, {
+    fetch(`${BASE_URL}${type}?q=${searchQuery}`, {
       signal,
     })
       .then((res) => res.json())

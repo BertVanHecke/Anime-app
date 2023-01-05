@@ -51,7 +51,17 @@ const AnimeStackNavigator = () => {
           ),
         })}
       />
-      <AnimeStack.Screen name="ProducerScreen" component={ProducerScreen} />
+      <AnimeStack.Screen
+        name="ProducerScreen"
+        component={ProducerScreen}
+        options={({ route }) => ({
+          headerTitle: () => (
+            <Text bold numberOfLines={1} style={headerText}>
+              {route.params.item.name}
+            </Text>
+          ),
+        })}
+      />
     </AnimeStack.Navigator>
   );
 };
