@@ -1,20 +1,20 @@
 import * as React from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AnimeScreen from "../screens/AnimeScreen";
-import AnimeDetailsScreen from "../screens/AnimeDetailsScreen";
+import MangaScreen from "../screens/MangaScreen";
+import MangaDetailsScreen from "../screens/MangaDetailsScreen";
+import ProducerScreen from "../screens/ProducerScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useTheme } from "@react-navigation/native";
-import ProducerScreen from "../screens/ProducerScreen";
 
-const AnimeStack = createNativeStackNavigator();
+const MangaStack = createNativeStackNavigator();
 
-const AnimeStackNavigator = () => {
+const MangaStackNavigator = () => {
   const navigation = useNavigation();
   const { colors } = useTheme();
   const { headerTitleContainer, headerText } = styles(colors);
   return (
-    <AnimeStack.Navigator
+    <MangaStack.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor: colors.background,
@@ -26,33 +26,26 @@ const AnimeStackNavigator = () => {
         headerTintColor: colors.text,
       }}
     >
-      <AnimeStack.Screen
-        name="AnimeScreen"
-        component={AnimeScreen}
+      <MangaStack.Screen
+        name="MangaScreen"
+        component={MangaScreen}
         options={{
           headerTitle: () => (
             <TouchableOpacity style={headerTitleContainer}>
               <Ionicons name="ios-tv" size={25} color={colors.primary} />
               <Text bold numberOfLines={1} style={headerText}>
-                Anime
+                Manga
               </Text>
             </TouchableOpacity>
           ),
+          headerRight: null,
         }}
       />
-      <AnimeStack.Screen
-        name="AnimeDetailsScreen"
-        component={AnimeDetailsScreen}
-        options={({ route }) => ({
-          headerTitle: () => (
-            <Text bold numberOfLines={1} style={headerText}>
-              {route.params.data.title}
-            </Text>
-          ),
-        })}
+      <MangaStack.Screen
+        name="MangaDetailsScreen"
+        component={MangaDetailsScreen}
       />
-      <AnimeStack.Screen name="ProducerScreen" component={ProducerScreen} />
-    </AnimeStack.Navigator>
+    </MangaStack.Navigator>
   );
 };
 
@@ -72,4 +65,4 @@ const styles = (colors) =>
     },
   });
 
-export default AnimeStackNavigator;
+export default MangaStackNavigator;

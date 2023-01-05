@@ -2,11 +2,14 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AnimeStackNavigator from "./AnimeStackNavigator";
 import { Ionicons } from "@expo/vector-icons";
-import { THEME } from "../../constants/constants";
+import MangaStackNavigator from "./MangaStackNavigator";
+import { useTheme } from "@react-navigation/native";
+import SettingsScreen from "../screens/SettingsScreen";
 
 const RootBottomTab = createBottomTabNavigator();
 
 const RootBottomTabNavigator = () => {
+  const { colors } = useTheme();
   const screenOptions = ({ route }) => ({
     tabBarIcon: ({ color }) => {
       let iconName = "ios-home";
@@ -18,13 +21,13 @@ const RootBottomTabNavigator = () => {
           size = 24;
           break;
 
-        case "Filter":
-          iconName = "ios-filter";
+        case "MangaStack":
+          iconName = "ios-book";
           size = 24;
           break;
 
-        case "Search":
-          iconName = "ios-search";
+        case "SettingsScreen":
+          iconName = "ios-settings";
           size = 23;
           break;
 
@@ -37,12 +40,19 @@ const RootBottomTabNavigator = () => {
     },
     tabBarShowLabel: false,
     tabBarStyle: {
-      borderTopWidth: 1,
-      borderTopColor: THEME.dark.background,
-      backgroundColor: THEME.dark.background,
+      position: "absolute",
+      overflow: "hidden",
+      bottom: 10,
+      left: 10,
+      right: 10,
+      height: 80,
+      borderRadius: 40,
+      paddingBottom: 0,
+      borderTopWidth: 0,
+      backgroundColor: colors.secondaryBackground,
     },
     headerStyle: {
-      backgroundColor: THEME.dark.background,
+      backgroundColor: colors.background,
       elevation: 0, // for Android
       shadowOffset: {
         width: 0,
@@ -60,6 +70,16 @@ const RootBottomTabNavigator = () => {
         name="AnimeStack"
         options={{ headerShown: false }}
         children={(navigation) => <AnimeStackNavigator {...navigation} />}
+      />
+      <RootBottomTab.Screen
+        name="MangaStack"
+        options={{ headerShown: false }}
+        children={(navigation) => <MangaStackNavigator {...navigation} />}
+      />
+      <RootBottomTab.Screen
+        name="SettingsScreen"
+        options={{ headerShown: false }}
+        children={(navigation) => <SettingsScreen {...navigation} />}
       />
     </RootBottomTab.Navigator>
   );

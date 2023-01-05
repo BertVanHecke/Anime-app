@@ -1,14 +1,10 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import DataList from '../components/DataList';
 
 const MangaScreen = () => {
   return (
-    <View>
-      <Text>MangaScreen</Text>
-    </View>
+    <DataList type={"manga"} />
   );
 }
-
-const styles = StyleSheet.create({})
 
 export default MangaScreen;

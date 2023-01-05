@@ -1,25 +1,18 @@
-import * as React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import RootDrawerNavigator from "./RootDrawerNavigator"
-
-const RootStack = createNativeStackNavigator()
+import * as React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import RootBottomTabNavigator from "./RootBottomTabNavigator";
+const RootStack = createNativeStackNavigator();
 
 const RootStackNavigator = () => {
   return (
     <RootStack.Navigator
       screenOptions={{
-        headerShown: false
+        headerShown: false,
       }}
     >
-        <RootStack.Screen 
-            name="RootDrawer"
-            component={RootDrawerNavigator}
-        />
+      <RootStack.Screen name="RootBottom" component={RootBottomTabNavigator} />
     </RootStack.Navigator>
-  )
-}
+  );
+};
 
-export default RootStackNavigator
-
-
-
+export default RootStackNavigator;

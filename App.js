@@ -1,22 +1,30 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import React, {useEffect, useState } from "react";
+import { LIGHTTHEME, DARKTHEME } from "./constants/constants";
 
 import { NavigationContainer } from "@react-navigation/native";
 import RootStackNavigator from "./src/stacks/RootStackNavigator";
+import { EventRegister } from "react-native-event-listeners";
+import { StatusBar } from "react-native";
 
 export default function App() {
+  const [theme, setTheme] = useState(false);
+
+  useEffect(() => {
+    let eventListener = EventRegister.addEventListener(
+      "changeTheme",
+      (data) => {
+        setTheme(data);
+      }
+    );
+    return () => {
+      EventRegister.removeEventListener(eventListener);
+    };
+  }, []);
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme ? LIGHTTHEME : DARKTHEME}>
+      <StatusBar barStyle={theme? "dark-content" : "light-content"}/>
       <RootStackNavigator />
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
