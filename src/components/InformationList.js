@@ -25,7 +25,9 @@ const InformationList = ({ header, data }) => {
             <TouchableWithoutFeedback
               onPress={() => navigation.navigate("ProducerScreen", { item })}
             >
-              <Text style={text}>{item.name}</Text>
+              <Text style={[text, { textDecorationLine: true }]}>
+                {item.name}
+              </Text>
             </TouchableWithoutFeedback>
           ) : (
             <View>

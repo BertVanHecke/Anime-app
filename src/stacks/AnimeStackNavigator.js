@@ -1,16 +1,15 @@
 import * as React from "react";
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AnimeScreen from "../screens/AnimeScreen";
 import AnimeDetailsScreen from "../screens/AnimeDetailsScreen";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation, useTheme } from "@react-navigation/native";
+import { useTheme } from "@react-navigation/native";
 import ProducerScreen from "../screens/ProducerScreen";
 
 const AnimeStack = createNativeStackNavigator();
 
 const AnimeStackNavigator = () => {
-  const navigation = useNavigation();
   const { colors } = useTheme();
   const { headerTitleContainer, headerText } = styles(colors);
   return (
@@ -31,12 +30,12 @@ const AnimeStackNavigator = () => {
         component={AnimeScreen}
         options={{
           headerTitle: () => (
-            <TouchableOpacity style={headerTitleContainer}>
+            <View style={headerTitleContainer}>
               <Ionicons name="ios-tv" size={25} color={colors.primary} />
               <Text bold numberOfLines={1} style={headerText}>
                 Anime
               </Text>
-            </TouchableOpacity>
+            </View>
           ),
         }}
       />
@@ -75,7 +74,6 @@ const styles = (colors) =>
       fontSize: 20,
     },
     headerTitleContainer: {
-      paddingRight: 15,
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",

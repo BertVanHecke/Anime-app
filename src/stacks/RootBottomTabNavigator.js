@@ -1,4 +1,5 @@
 import * as React from "react";
+import { StyleSheet, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AnimeStackNavigator from "./AnimeStackNavigator";
 import { Ionicons } from "@expo/vector-icons";
@@ -10,6 +11,7 @@ const RootBottomTab = createBottomTabNavigator();
 
 const RootBottomTabNavigator = () => {
   const { colors } = useTheme();
+  const { headerText } = styles(colors);
   const screenOptions = ({ route }) => ({
     tabBarIcon: ({ color }) => {
       let iconName = "ios-home";
@@ -78,11 +80,26 @@ const RootBottomTabNavigator = () => {
       />
       <RootBottomTab.Screen
         name="SettingsScreen"
-        options={{ headerShown: false }}
+        options={() => ({
+          headerTitle: () => (
+            <Text bold numberOfLines={1} style={headerText}>
+              Settings
+            </Text>
+          ),
+        })}
         children={(navigation) => <SettingsScreen {...navigation} />}
       />
     </RootBottomTab.Navigator>
   );
 };
+
+const styles = (colors) =>
+  StyleSheet.create({
+    headerText: {
+      color: colors.text,
+      fontWeight: "bold",
+      fontSize: 20,
+    },
+  });
 
 export default RootBottomTabNavigator;

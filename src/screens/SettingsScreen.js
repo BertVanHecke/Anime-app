@@ -23,7 +23,7 @@ const SettingsScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
-        <Text style={{ color: colors.text }}>
+        <Text style={{ color: colors.text, marginBottom: 20 }}>
           {theme ? "Light" : "Dark"} mode
         </Text>
         <Switch value={theme} onValueChange={handleOnSwitchChange} />
