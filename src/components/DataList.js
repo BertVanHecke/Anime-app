@@ -53,7 +53,7 @@ const DataList = ({ type }) => {
 
   return (
     <SafeAreaView style={container}>
-      <View style={{ padding: 10 }}>
+      <View style={{ padding: 10, flex: 1 }}>
         <TextInput
           style={input}
           onChangeText={(text) => handleSearch(text)}

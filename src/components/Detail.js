@@ -7,9 +7,10 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
+  Platform,
 } from "react-native";
 import YoutubeIframe from "react-native-youtube-iframe";
-import { WIDTH } from "../../constants/constants";
+import { HEIGHT, WIDTH } from "../../constants/constants";
 import { BlurView } from "expo-blur";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -80,7 +81,10 @@ const Detail = ({ id, type }) => {
       ) : (
         <ScrollView
           style={container}
-          contentContainerStyle={{ paddingBottom: 120 }}
+          contentContainerStyle={{
+            paddingBottom: 120,
+            height: HEIGHT,
+          }}
         >
           <View>
             <View>
